@@ -19,8 +19,9 @@ async function generatePassword(plainTextPassword: string): Promise<string> {
 }
 
 async function comparePasswords(plainTextPassword: string, hash: string): Promise<boolean> {
-    //@TODO Use Bcrypt to Compare your password to your Salted Hashed Password
-    return null;
+    
+    let result = await bcrypt.compare(plainTextPassword,hash);
+    return result;
 }
 
 function generateJWT(user: User): string {
@@ -69,7 +70,7 @@ router.post('/login', async (req: Request, res: Response) => {
         return res.status(400).send({ auth: false, message: 'Password is required' });
     }
 
-   // const user = await User.findByPk(email);
+    const user = await User.findByPk(email);
     // check that user exists
     if(!user) {
         return res.status(401).send({ auth: false, message: 'Unauthorized' });
@@ -110,8 +111,6 @@ router.post('/', async (req: Request, res: Response) => {
     }
 
     const password_hash = await generatePassword(plainTextPassword);
-    console.log(password_hash);
-    return res.status(200).send('Test---');
     const newUser = await new User({
         email: email,
         password_hash: password_hash
