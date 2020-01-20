@@ -11,8 +11,11 @@ import * as EmailValidator from 'email-validator';
 const router: Router = Router();
 
 async function generatePassword(plainTextPassword: string): Promise<string> {
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    let hash = await bcrypt.hashSync(plainTextPassword, salt);
     //@TODO Use Bcrypt to Generated Salted Hashed Passwords
-    return null;
+    return hash;
 }
 
 async function comparePasswords(plainTextPassword: string, hash: string): Promise<boolean> {
@@ -66,7 +69,7 @@ router.post('/login', async (req: Request, res: Response) => {
         return res.status(400).send({ auth: false, message: 'Password is required' });
     }
 
-    const user = await User.findByPk(email);
+   // const user = await User.findByPk(email);
     // check that user exists
     if(!user) {
         return res.status(401).send({ auth: false, message: 'Unauthorized' });
@@ -85,7 +88,7 @@ router.post('/login', async (req: Request, res: Response) => {
     res.status(200).send({ auth: true, token: jwt, user: user.short()});
 });
 
-//register a new user
+//register a new user /api/v0/users/auth/
 router.post('/', async (req: Request, res: Response) => {
     const email = req.body.email;
     const plainTextPassword = req.body.password;
@@ -107,7 +110,8 @@ router.post('/', async (req: Request, res: Response) => {
     }
 
     const password_hash = await generatePassword(plainTextPassword);
-
+    console.log(password_hash);
+    return res.status(200).send('Test---');
     const newUser = await new User({
         email: email,
         password_hash: password_hash
