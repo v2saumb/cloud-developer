@@ -58,7 +58,7 @@ router.patch('/:id',
         item.url = fileName;
     }
     item.save();
-    res.send(201).send("update successful");
+    res.status(201).send("update successful");
 });
 
 
