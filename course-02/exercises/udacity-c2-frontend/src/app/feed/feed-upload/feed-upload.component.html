@@ -1,17 +1,20 @@
+
 <form [formGroup]="uploadForm" (submit)="onSubmit($event)">`
     <label>
-        <input type="file" (change)="selectImage($event)" accept="image/*" style="display:none"/>
-        <img *ngIf="previewDataUrl" [src]="previewDataUrl" style="width:50px; height: 50px;" />
-        <a *ngIf="!previewDataUrl" ion-button color="secondary">
-            Select a Photo
-        </a>
+        <input type="file" (change)="selectImage($event)" accept="image/jpeg" style="display:none" #fileName/>
+        <img *ngIf="previewDataUrl" [src]="previewDataUrl" />
+        <ion-button *ngIf="!previewDataUrl" (click)="fileName.click()"
+                    color="tertiary"
+                    type="button"
+        >Select A Photo
+        </ion-button>
     </label>
     <ion-item>
         <ion-label position="floating" color="primary">Caption</ion-label>
         <ion-input type="text" formControlName="caption" required></ion-input>
       </ion-item>
       <ion-button 
-        color="primary" 
+        color="secondary"
         type="submit"
         [disabled]="!uploadForm.valid || !file">
         Post
