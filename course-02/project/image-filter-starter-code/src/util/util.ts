@@ -32,3 +32,17 @@ export async function deleteLocalFiles(files:Array<string>){
         fs.unlinkSync(file);
     }
 }
+
+//Creating function to validate URL
+//fixed the pattern for
+export function isUrlValid(inputURL: string) {
+    let result = false;
+    let  res = inputURL.match(/^(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(res == null) {
+        result = false;
+    }
+    else {
+        result = true;
+    }
+    return result;
+}
