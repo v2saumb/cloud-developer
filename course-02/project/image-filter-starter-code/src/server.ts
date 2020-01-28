@@ -38,7 +38,7 @@ import {filterImageFromURL, deleteLocalFiles, isUrlValid} from './util/util';
       res.status(500).send("something went wrong creating the file ")
     }
     res.sendFile(filtered_image);
-
+    deleteLocalFiles([filtered_image]);
   } );
   //! END @TODO1
   
