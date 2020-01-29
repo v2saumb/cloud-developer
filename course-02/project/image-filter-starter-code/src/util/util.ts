@@ -11,7 +11,10 @@ import { config } from "../config/config";
 //    an absolute path to a filtered image locally saved file
 export async function filterImageFromURL(inputURL: string): Promise<string>{
     return new Promise( async resolve => {
-        const photo = await Jimp.read(inputURL);
+        const photo = await Jimp.read(inputURL).catch((err)=>{
+                console.error("Error Reading image "+ err);
+                resolve(undefined);
+        });
         let outpath = config.dev.image_out_folder +'filtered.'+Math.floor(Math.random() * 2000)+'.jpg';
         await photo
         .resize(256, 256) // resize

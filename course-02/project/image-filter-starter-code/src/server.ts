@@ -35,7 +35,7 @@ import {filterImageFromURL, deleteLocalFiles, isUrlValid} from './util/util';
     }
     let filtered_image = await filterImageFromURL(image_url);
     if(!filtered_image){
-      res.status(500).send("something went wrong creating the file ")
+      res.status(500).send("Something went wrong while processing the image")
     }
     res.sendFile(filtered_image);
     deleteLocalFiles([filtered_image]);
