@@ -33,8 +33,8 @@ router.get( "/filteredimage", requireAuth,
     if(!filtered_image){
       res.status(500).send("Something went wrong while processing the image")
     }
-    res.sendFile(filtered_image);
-    deleteLocalFiles([filtered_image]);
+         await res.sendFile(filtered_image);
+        deleteLocalFiles([filtered_image]);
   } );
 //! END @TODO1
 export const ImageRouter: Router = router;

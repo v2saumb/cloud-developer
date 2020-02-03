@@ -7,7 +7,9 @@ export const config = {
     "dialect": process.env.UDACITY_POSTGRESS_DIALECT,
     "aws_region": process.env.UDACITY_AWS_REGION,
     "aws_profile": process.env.UDACITY_PROFILE,
-    "aws_media_bucket": process.env.UDACITY_AWS_MEDIA_BUCKET
+    "aws_media_bucket": process.env.UDACITY_AWS_MEDIA_BUCKET,
+    "image_out_folder":process.env.UDACITY_IMAGE_OUT,
+    "image_processing_url":process.env.UDACITY_IMG_PROCESSING_URL
   },
   "prod": {
     "username": "",

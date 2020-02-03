@@ -2,12 +2,15 @@
   "name": "udacity-c2-image-filter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "prod": "tsc && node ./www/server.js",
     "clean": "rm -rf www/ || true",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp -rf output www/output && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -27,12 +30,15 @@
     "ts-node-dev": "^1.0.0-pre.40",
     "tslint": "^5.18.0",
     "jsonwebtoken": "^8.5.1",
+    "aws-sdk": "^2.610.0",
     "typescript": "^3.5.3"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.3.2",
+    "aws-sdk": "^2.610.0",
     "express": "^4.17.1",
     "jimp": "^0.6.4",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "request": "^2.88.0"
   }
 }
