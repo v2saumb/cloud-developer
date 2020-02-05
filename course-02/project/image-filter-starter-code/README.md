@@ -44,5 +44,5 @@ Additional Changes
 
 ## Deployment Screenshots
 
--   ![Image Filter Service]("deployment_screenshots/Screenshot_withoutdomainmapping.png")
+![Image Filter Service](/deployment_screenshots/Screenshot_withoutdomainmapping.jpg)
 
