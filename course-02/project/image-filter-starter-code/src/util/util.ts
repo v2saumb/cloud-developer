@@ -76,12 +76,11 @@ export function isUrlValid(inputURL: string) {
 
  export function getSignedImage(imageUrl: string ) {
      const serviceurl = imageUrl;
-     console.log(imageUrl);
+     console.log('Get Signed Image ', imageUrl);
      return new Promise((resolve, reject) => {
          request(serviceurl, {encoding: 'binary'}, (err: any, res: { statusCode: any; headers: { [x: string]: any; }; }, body: any) => {
              if (err) reject(err)
-             console.log(res.statusCode);
-             console.log(res.headers['content-type']);
+             console.log('Got the Image ',res.statusCode, res.headers['content-type']);
              let unFiltered = fs.createWriteStream(process.cwd() + config.dev.image_out_folder + 'unfiltered.' + Math.floor(Math.random() * 2000) + '.jpg');
              fs.writeFile(unFiltered.path, body, 'binary', function (err) {
                  resolve(unFiltered.path);

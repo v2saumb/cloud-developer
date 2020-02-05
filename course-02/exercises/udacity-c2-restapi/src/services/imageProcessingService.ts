@@ -14,8 +14,7 @@ export function getFilteredImage(imageUrl: string, authToken: string,key: string
             'bearer': token_bearer[1]
             } ,encoding: 'binary'}, (err: any, res: { statusCode: any; headers: { [x: string]: any; }; }, body: any) => {
             if (err) reject(err)
-            console.log(res.statusCode);
-            console.log(res.headers['content-type']);
+            console.log('Get the Filtered image ' , res.statusCode , res.headers['content-type']);
             let filteredImage = fs.createWriteStream(process.cwd()+c.image_out_folder + 'filtered.'+Math.floor(Math.random() * 2000)+'.jpg');
             fs.writeFile(filteredImage.path, body, 'binary', function (err) {
                 // @ts-ignore

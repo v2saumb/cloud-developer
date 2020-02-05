@@ -62,8 +62,8 @@ export function getTinyURl(imageUrl: string ){
     return new Promise((resolve, reject) => {
         TinyURL.shorten(imageUrl, function(res: any, err: any) {
             if (err)
-                console.log('Tiny URL error: ',err);
-            console.log('Tiny URL : ' , res);
+                console.log('Error getting url: ',err);
+            console.log('Got Tiny URL : ' , res);
             resolve(res);
         });
     })
@@ -71,6 +71,7 @@ export function getTinyURl(imageUrl: string ){
 
 
 export async function putImage(key: string, image: string): Promise<string>{
+
     const photo =  await Jimp.read(image);
     const fileData =  await photo.getBufferAsync(Jimp.MIME_JPEG);
     return new Promise((resolve, reject) => {
@@ -81,7 +82,8 @@ export async function putImage(key: string, image: string): Promise<string>{
             ContentType: "image/jpeg"
         };
         s3.putObject(s3UploadConfig,(err, data) =>{
-            if(err) console.log('error',err);
+            console.log('Updating image in s3 ', key);
+            if(err) console.log('Error calling put object: ',err);
             imgService.deleteLocalFiles([image]);
             resolve('done');
         });

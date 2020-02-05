@@ -79,6 +79,7 @@ router.get('/signed-url/:fileName',
 router.post('/', 
     requireAuth, 
     async (req: Request, res: Response) => {
+    console.log('Calling create feed ');
     const caption = req.body.caption;
     const fileName = req.body.url;
       // check Caption is valid
@@ -100,9 +101,10 @@ router.post('/',
         saved_item.url = await AWS.getTinyURl(AWS.getGetSignedUrl(saved_item.url));
         /*add code to call the image processing service */
        const image: string = await imgService.getFilteredImage(  saved_item.url,req.header('authorization'), fileName);
-       console.log('Image ',image);
+       console.log('Filtered Image path: ',image);
        await AWS.putImage(fileName, image);
-        res.status(201).send(saved_item);
+       console.log('Pushed image to S3 sending response ')
+       res.send(saved_item);
 });
 
 
