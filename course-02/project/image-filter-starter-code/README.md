@@ -44,5 +44,9 @@ Additional Changes
 
 ## Deployment Screenshots
 
-![Image Filter Service](/deployment_screenshots/Screenshot_withoutdomainmapping.jpg)
+- Image Filter Service
+![Image Filter Service](deployment_screenshots/Screenshot_withoutdomainmapping.jpg)
 
+
+- Rest Api
+![Image Filter Service](deployment_screenshots/Screenshot__restAPI_withoutdomainmapping.jpg)
