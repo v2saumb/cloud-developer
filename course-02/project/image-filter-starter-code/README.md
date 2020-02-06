@@ -40,10 +40,10 @@ This is a Node-Express server which can be deployed to a cloud service. This pro
 - Additional logging for debugging 
 - Used TinyUrl api to reduce the S3 signed URL's
 - Mapped custom domain samagram.saumyabhatnagar.me
-- [**Rest Service URL** (http://api.saumyabhatnagar.me) ](http://api.saumyabhatnagar.me) 
 
 #### Testing Information
 
+- [**Rest Service URL** (http://api.saumyabhatnagar.me) ](http://api.saumyabhatnagar.me) 
 - [**Postman Collection**](https://github.com/v2saumb/cloud-developer/blob/master/course-02/exercises/udacity-c2-restapi/udacity-c2-restapi.postman_collection.json)
 - **username:** hello@gmail.com 
 - **password:** fancypass
@@ -64,10 +64,10 @@ This is the final project for the course. It is a Node-Express application which
 - Added Authorization
 - Added code to delete the temporary files after processing
 - Mapped custom domain samagram.saumyabhatnagar.me
-- [**Image Filter Service URL** (http://filtersvc.saumyabhatnagar.me)](http://filtersvc.saumyabhatnagar.me)
 
 #### Testing Information
 
+- [**Image Filter Service URL** (http://filtersvc.saumyabhatnagar.me)](http://filtersvc.saumyabhatnagar.me)
 - [**Postman Collection For Authorization**](https://github.com/v2saumb/cloud-developer/blob/master/course-02/exercises/udacity-c2-restapi/udacity-c2-restapi.postman_collection.json) Use the login end point to generate token.
 - [**Postman Collection for Image Filter](https://github.com/v2saumb/cloud-developer/blob/master/course-02/project/image-filter-starter-code/cloud-cdnd-c2-final.postman_collection.json) Make sure to add the Authorization header
 - **username:** hello@gmail.com 
@@ -99,3 +99,24 @@ This is the final project for the course. It is a Node-Express application which
 
 - Rest Api
 ![Image Filter Service](deployment_screenshots/Screenshot__restAPI_withoutdomainmapping.jpg)
+
+
+***
+
+## Getting Setup
+
+### Installing project dependencies
+
+This project uses NPM to manage software dependencies. NPM Relies on the package.json file located in the root of this repository. After cloning, open your terminal and run:
+```bash
+npm install
+```
+>_tip_: **npm i** is shorthand for **npm install**
+
+### Running the Server Locally
+To run the server locally in developer mode, open terminal and run:
+```bash
+npm run dev
+```
+
+
