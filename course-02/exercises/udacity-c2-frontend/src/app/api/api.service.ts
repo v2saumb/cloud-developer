@@ -53,7 +53,8 @@ export class ApiService {
 
   async upload(endpoint: string, file: File, payload: any): Promise<any> {
     const signed_url = (await this.get(`${endpoint}/signed-url/${file.name}`)).url;
-
+    /*adding simple check to handle options calls on CORS*/
+    let counter = 0;
     const headers = new HttpHeaders({'Content-Type': file.type});
     const req = new HttpRequest( 'PUT', signed_url, file,
                                   {
@@ -63,7 +64,9 @@ export class ApiService {
 
     return new Promise ( resolve => {
         this.http.request(req).subscribe((resp) => {
-        if (resp && (<any> resp).status && (<any> resp).status === 200) {
+        if (resp && (<any> resp).status && (<any> resp).status === 200 && counter==0) {
+            /*adding simple check to handle options calls on CORS*/
+            counter++;
           resolve(this.post(endpoint, payload));
         }
       });
