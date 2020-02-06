@@ -3,46 +3,120 @@
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
 The project is split into three parts:
-1. [The Simple Frontend](https://github.com/udacity/cloud-developer/tree/master/course-02/exercises/udacity-c2-frontend)
-A basic Ionic client web application which consumes the RestAPI Backend. [Covered in the course]
-2. [The RestAPI Backend](https://github.com/udacity/cloud-developer/tree/master/course-02/exercises/udacity-c2-restapi), a Node-Express server which can be deployed to a cloud service. [Covered in the course]
-3. [The Image Filtering Microservice](https://github.com/udacity/cloud-developer/tree/master/course-02/project/image-filter-starter-code), the final project for the course. It is a Node-Express application which runs a simple script to process images. [Your assignment]
+### The Simple Frontend
 
-## Tasks
+A basic Ionic client web application which consumes the RestAPI Backend. 
 
-### Setup Node Environment
+[**GITHUB REPOSITORY**](https://github.com/v2saumb/cloud-developer/tree/master/course-02/exercises/udacity-c2-frontend)
 
-You'll need to create a new node server. Open a new terminal within the project directory and run:
+```https://github.com/v2saumb/cloud-developer/tree/master/course-02/exercises/udacity-c2-frontend```
 
-1. Initialize a new project: `npm i`
-2. run the development server with `npm run dev`
+#### Additional Changes
 
-### Create a new endpoint in the server.ts file
+- Personalized the front end, changed the look of the application a bit
+- Made changes to resolve duplicate submit. 
+- Mapped custom domain **samagram.saumyabhatnagar.me**
 
-The starter code has a task for you to complete an endpoint in `./src/server.ts` which uses query parameter to download an image from a public URL, filter the image, and return the result.
+#### Testing Information 
 
-We've included a few helper functions to handle some of these concepts and we're importing it for you at the top of the `./src/server.ts`  file.
+- [**FrontEnd URL:** (http://samagram.saumyabhatnagar.me/home)](http://samagram.saumyabhatnagar.me/home) 
+- **username:** hello@gmail.com 
+- **password:** fancypass
 
-```typescript
-import {filterImageFromURL, deleteLocalFiles} from './util/util';
-```
 
-### Deploying your system
+***
 
-Follow the process described in the course to `eb init` a new application and `eb create` a new environment to deploy your image-filter service! Don't forget you can use `eb deploy` to push changes.
+### The RestAPI Backend
 
+This is a Node-Express server which can be deployed to a cloud service. This provides enpoints to login, post and get feeds 
+
+[**GITHUB REPOSITORY**](https://github.com/v2saumb/cloud-developer/tree/master/course-02/exercises/udacity-c2-restapi) 
+
+```https://github.com/v2saumb/cloud-developer/tree/master/course-02/exercises/udacity-c2-restapi```
+
+#### Additional changes
+
+- Refactored the code to call the Image filter service. Currently handling it only at the time of posting the feed. TODO - optimize the service so we dont have to transfer the images back and forth
+- Additional logging for debugging 
+- Used TinyUrl api to reduce the S3 signed URL's
+- Mapped custom domain samagram.saumyabhatnagar.me
+
+#### Testing Information
+
+- [**Rest Service URL** (http://api.saumyabhatnagar.me) ](http://api.saumyabhatnagar.me) 
+- [**Postman Collection**](https://github.com/v2saumb/cloud-developer/blob/master/course-02/exercises/udacity-c2-restapi/udacity-c2-restapi.postman_collection.json)
+- **username:** hello@gmail.com 
+- **password:** fancypass
+
+***
+
+### The Image Filtering Microservice
+
+This is the final project for the course. It is a Node-Express application which runs a simple script to process images. 
+
+[**GITHUB REPOSITORY**](https://github.com/v2saumb/cloud-developer/tree/master/course-02/project/image-filter-starter-code) 
+
+```https://github.com/v2saumb/cloud-developer/tree/master/course-02/project/image-filter-starter-code```
+
+#### Additional Changes
+
+- Setup the environment, initialize and deploy using beanstalk
+- Added Authorization
+- Added code to delete the temporary files after processing
+- Mapped custom domain samagram.saumyabhatnagar.me
+
+#### Testing Information
+
+- [**Image Filter Service URL** (http://filtersvc.saumyabhatnagar.me)](http://filtersvc.saumyabhatnagar.me)
+- [**Postman Collection For Authorization**](https://github.com/v2saumb/cloud-developer/blob/master/course-02/exercises/udacity-c2-restapi/udacity-c2-restapi.postman_collection.json) Use the login end point to generate token.
+- [**Postman Collection for Image Filter](https://github.com/v2saumb/cloud-developer/blob/master/course-02/project/image-filter-starter-code/cloud-cdnd-c2-final.postman_collection.json) Make sure to add the Authorization header
+- **username:** hello@gmail.com 
+- **password:** fancypass
+
+
+
+***
+
+## Project Tasks List
+
+- [x] Setup Node Environment
+- [x] Create a new endpoint in the server.ts file
+- [x] Deploying your system
+   
 ## Stand Out (Optional)
 
-### Refactor the course RESTapi
+- [x] Refactor the course RESTapi
+- [x] Authentication
+- [x] Custom Domain Name **saumyabhatnagar.me**
 
-If you're feeling up to it, refactor the course RESTapi to make a request to your newly provisioned image server.
+***
 
-### Authentication
+## Deployment Screenshots
 
-Prevent requests without valid authentication headers.
-> !!NOTE if you choose to submit this, make sure to add the token to the postman collection and export the postman collection file to your submission so we can review!
+- Image Filter Service
+![Image Filter Service](deployment_screenshots/Screenshot_withoutdomainmapping.jpg)
 
-### Custom Domain Name
 
-Add your own domain name and have it point to the running services (try adding a subdomain name to point to the processing server)
-> !NOTE: Domain names are not included in AWS’ free tier and will incur a cost.
+- Rest Api
+![Image Filter Service](deployment_screenshots/Screenshot__restAPI_withoutdomainmapping.jpg)
+
+
+***
+
+## Getting Setup
+
+### Installing project dependencies
+
+This project uses NPM to manage software dependencies. NPM Relies on the package.json file located in the root of this repository. After cloning, open your terminal and run:
+```bash
+npm install
+```
+>_tip_: **npm i** is shorthand for **npm install**
+
+### Running the Server Locally
+To run the server locally in developer mode, open terminal and run:
+```bash
+npm run dev
+```
+
+
